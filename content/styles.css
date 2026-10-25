@@ -1,0 +1,811 @@
+/**
+ * Omar Tariq's WhatsApp Translator Styles v2.3
+ * Pixel-perfect WhatsApp Native Ergonomics
+ */
+
+/* ===================================================
+   0. Theme Engine (Dynamic Light / Dark System)
+   WhatsApp sets class "dark" on <body> or parent containers.
+   =================================================== */
+:root, body, body.dark, .dark {
+  --oat-text: #e9edef;
+  --oat-subtext: #8696a0;
+  --oat-icon: #8696a0;
+  --oat-icon-hover: #00a884;
+  --oat-hover-bg: rgba(134, 150, 160, 0.15);
+  --oat-border: rgba(134, 150, 160, 0.2);
+  --oat-modal-bg: #222e35;
+  --oat-modal-header: #202c33;
+  --oat-input-bg: #2a3942;
+  --oat-shadow: rgba(0, 0, 0, 0.45);
+}
+
+body:not(.dark) {
+  --oat-text: #111b21;
+  --oat-subtext: #667781;
+  --oat-icon: #54656f;
+  --oat-icon-hover: #00a884;
+  --oat-hover-bg: rgba(0, 0, 0, 0.08);
+  --oat-border: rgba(0, 0, 0, 0.12);
+  --oat-modal-bg: #ffffff;
+  --oat-modal-header: #008069;
+  --oat-input-bg: #f0f2f5;
+  --oat-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* ===================================================
+   1. Inline Message Hover Button
+   =================================================== */
+div:has(> .oat-hover-translate-btn) {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  width: auto !important;
+  max-width: none !important;
+  overflow: visible !important;
+  gap: 3px !important;
+}
+
+div:has(> .oat-hover-translate-btn) > * {
+  flex-shrink: 0 !important;
+}
+
+.oat-hover-translate-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: var(--oat-icon) !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+  transition: color 0.15s ease, background 0.15s ease, opacity 0.1s ease !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+[data-id]:hover .oat-hover-translate-btn,
+.message-in:hover .oat-hover-translate-btn,
+.message-out:hover .oat-hover-translate-btn,
+div[role="row"]:hover .oat-hover-translate-btn,
+div[data-testid="msg-container"]:hover .oat-hover-translate-btn,
+div:has(> .oat-hover-translate-btn):hover .oat-hover-translate-btn {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.oat-hover-translate-btn:hover {
+  color: var(--oat-icon-hover) !important;
+  background: var(--oat-hover-bg) !important;
+}
+
+.oat-hover-translate-btn.loading svg {
+  animation: oat-spin 0.7s linear infinite;
+}
+
+.oat-hover-translate-btn svg {
+  width: 16px !important;
+  height: 16px !important;
+  fill: currentColor !important;
+}
+
+/* ===================================================
+   2. Inline Translated Text — Native WhatsApp Colors
+   =================================================== */
+.oat-translated-content {
+  margin-top: 4px !important;
+  padding-top: 5px !important;
+  border-top: 1px solid var(--oat-border) !important;
+  font-size: 14.2px !important;
+  line-height: 19px !important;
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
+  user-select: text !important;
+  color: var(--oat-text) !important;
+  animation: oat-fade 0.18s ease-out;
+  position: relative !important;
+}
+
+/* Outgoing bubble (green) text is always light */
+.message-out .oat-translated-content {
+  color: #e9edef !important;
+  border-top-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ===================================================
+   2b. Rich Formatted Links, Mentions & Numbers
+   =================================================== */
+.oat-translated-content .oat-link,
+.oat-quote-translated .oat-link {
+  color: #25d366 !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+  word-break: break-all !important;
+  display: inline !important;
+  transition: opacity 0.12s ease !important;
+}
+
+body:not(.dark) .oat-translated-content .oat-link,
+body:not(.dark) .oat-quote-translated .oat-link {
+  color: #008069 !important;
+}
+
+.message-out .oat-translated-content .oat-link,
+.message-out .oat-quote-translated .oat-link {
+  color: #25d366 !important;
+}
+
+.oat-translated-content .oat-link:hover,
+.oat-quote-translated .oat-link:hover {
+  opacity: 0.8 !important;
+  text-decoration: underline !important;
+}
+
+/* Mentions (@~Name, @Name, @Phone) */
+.oat-translated-content .oat-mention,
+.oat-quote-translated .oat-mention {
+  color: #25d366 !important;
+  font-weight: 600 !important;
+  display: inline !important;
+  cursor: default !important;
+}
+
+body:not(.dark) .oat-translated-content .oat-mention,
+body:not(.dark) .oat-quote-translated .oat-mention {
+  color: #008069 !important;
+  font-weight: 600 !important;
+}
+
+.message-out .oat-translated-content .oat-mention,
+.message-out .oat-quote-translated .oat-mention {
+  color: #25d366 !important;
+  font-weight: 600 !important;
+}
+
+/* Phone Numbers (+20 100 123 4567, etc.) */
+.oat-translated-content .oat-phone,
+.oat-quote-translated .oat-phone {
+  color: #53bdeb !important;
+  font-weight: 500 !important;
+  display: inline !important;
+  text-decoration: none !important;
+}
+
+body:not(.dark) .oat-translated-content .oat-phone,
+body:not(.dark) .oat-quote-translated .oat-phone {
+  color: #027eb5 !important;
+}
+
+.message-out .oat-translated-content .oat-phone,
+.message-out .oat-quote-translated .oat-phone {
+  color: #53bdeb !important;
+}
+
+/* Timestamp clearance buffer (Unedited incoming: ~85px) */
+.oat-translated-content::after {
+  content: "" !important;
+  display: inline-block !important;
+  width: 85px !important;
+  height: 1.1em !important;
+  vertical-align: sub !important;
+  pointer-events: none !important;
+}
+
+/* Sender messages include read receipts (✓✓) -> ~100px buffer */
+.message-out .oat-translated-content::after {
+  width: 100px !important;
+}
+
+/* Edited messages include "Edited [Time] [✓✓]" -> 148px buffer */
+.oat-translated-content.oat-has-edited::after,
+.message-out .oat-translated-content.oat-has-edited::after {
+  width: 148px !important;
+}
+
+/* Safety guard: never show stray translated content on chat background/wallpaper */
+[role="row"] > .oat-translated-content,
+[role="row"] > div > .oat-translated-content,
+[role="row"] > .oat-quote-translated,
+[role="row"] > div > .oat-quote-translated,
+#main > .oat-translated-content,
+#main > .oat-quote-translated,
+#main > div > .oat-translated-content,
+#main > div > .oat-quote-translated,
+[role="region"] > .oat-translated-content,
+[role="region"] > .oat-quote-translated {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Strictly ensure translated content displays inside the message bubble */
+.message-in .oat-translated-content,
+.message-out .oat-translated-content,
+.copyable-text .oat-translated-content,
+[class*="bubble" i] .oat-translated-content {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Extension reload notification banner */
+.oat-reload-banner {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--oat-modal-bg, #202c33);
+  color: var(--oat-text, #e9edef);
+  border: 1px solid #00a884;
+  border-radius: 10px;
+  padding: 12px 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 999999;
+  animation: oat-fade 0.2s ease-out;
+  font-family: inherit;
+  font-size: 13.5px;
+}
+
+.oat-reload-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.oat-reload-text strong {
+  color: #00a884;
+  font-size: 13px;
+}
+
+.oat-reload-btn {
+  background: #00a884;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.oat-reload-btn:hover {
+  background: #06cf9c;
+}
+
+/* Inline Quoted Message Translation (sits INSIDE the quote preview card UNDER original text) */
+[data-testid="quoted-message"],
+[class*="quoted" i],
+div._amv2,
+div._amv3,
+div[role="button"][tabindex="-1"]:has(.oat-quote-translated),
+div:has(> .oat-quote-translated),
+div:has(> * > .oat-quote-translated),
+div:has(> * > * > .oat-quote-translated) {
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.oat-quote-translated {
+  display: block !important;
+  width: 100% !important;
+  flex-basis: 100% !important;
+  box-sizing: border-box !important;
+  margin-top: 4px !important;
+  padding-top: 4px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+  font-size: 13px !important;
+  line-height: 17.5px !important;
+  color: var(--oat-text) !important;
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
+  animation: oat-fade 0.18s ease-out !important;
+  clear: both !important;
+  position: relative !important;
+  z-index: 2 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.message-out .oat-quote-translated {
+  color: #e9edef !important;
+  border-top-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+body:not(.dark) .oat-quote-translated {
+  color: #111b21 !important;
+  border-top-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ===================================================
+   3. Format Bar Translate Button
+   =================================================== */
+.oat-format-bar-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: inherit !important;
+  padding: 0 !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+  transition: color 0.12s ease, background 0.12s ease !important;
+}
+
+.oat-format-bar-btn:hover {
+  color: var(--oat-icon-hover) !important;
+  background: var(--oat-hover-bg) !important;
+}
+
+.oat-format-bar-btn svg {
+  width: 17px !important;
+  height: 17px !important;
+  fill: currentColor !important;
+}
+
+.oat-format-badge {
+  position: absolute !important;
+  top: 1px !important;
+  right: -1px !important;
+  background: #00a884 !important;
+  color: #fff !important;
+  font-size: 7.5px !important;
+  font-weight: 800 !important;
+  padding: 1px 3px !important;
+  border-radius: 5px !important;
+  line-height: 9px !important;
+  pointer-events: none !important;
+}
+
+.oat-format-bar-btn.loading svg {
+  animation: oat-spin 0.7s linear infinite;
+}
+
+/* Strict Guard: Format bar button MUST NEVER appear in reaction pickers or dialogs */
+[role="dialog"] .oat-format-bar-btn,
+[data-testid*="reaction"] .oat-format-bar-btn,
+div:has(> [data-icon*="reaction"]) .oat-format-bar-btn,
+div:has(> [aria-label*="reaction" i]) .oat-format-bar-btn,
+div:has(> [aria-label*="реакц" i]) .oat-format-bar-btn,
+div:has(> [aria-label*="tepki" i]) .oat-format-bar-btn {
+  display: none !important;
+}
+
+/* ===================================================
+   4. 3-Dots Menu Item (Pixel-perfect native alignment)
+   =================================================== */
+.oat-menu-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  width: 100% !important;
+  padding: 9px 16px 9px 24px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  text-align: left !important;
+  outline: none !important;
+  font-family: inherit !important;
+  font-size: 14.5px !important;
+  color: var(--oat-text) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+  transition: background 0.1s !important;
+}
+
+.oat-menu-item:hover {
+  background: var(--oat-hover-bg) !important;
+}
+
+.oat-menu-item svg {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  fill: currentColor !important;
+  opacity: 0.85 !important;
+  flex-shrink: 0 !important;
+}
+
+.oat-menu-badge {
+  margin-left: auto !important;
+  background: #00a884 !important;
+  color: #fff !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  padding: 2px 6px !important;
+  border-radius: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ===================================================
+   5. WhatsApp-Native Centered Language Modal Dialog
+   =================================================== */
+.oat-lang-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(11, 20, 26, 0.72) !important;
+  backdrop-filter: blur(2px) !important;
+  z-index: 1000000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: oat-fade 0.15s ease-out !important;
+}
+
+.oat-lang-dialog {
+  width: 90% !important;
+  max-width: 400px !important;
+  max-height: 520px !important;
+  background: var(--oat-modal-bg) !important;
+  color: var(--oat-text) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 17px 50px 0 var(--oat-shadow) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  animation: oat-pop 0.18s cubic-bezier(0.1, 0.9, 0.2, 1) !important;
+}
+
+.oat-lang-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 20px !important;
+  background: var(--oat-modal-header) !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+body:not(.dark) .oat-lang-header {
+  color: #ffffff !important;
+}
+
+.oat-lang-close {
+  background: none !important;
+  border: none !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  opacity: 0.85 !important;
+}
+
+.oat-lang-close:hover {
+  opacity: 1 !important;
+}
+
+.oat-lang-search-wrap {
+  padding: 12px 16px !important;
+  background: transparent !important;
+  border-bottom: 1px solid var(--oat-border) !important;
+}
+
+.oat-lang-search {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: var(--oat-input-bg) !important;
+  color: var(--oat-text) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 9px 14px !important;
+  font-size: 14px !important;
+  outline: none !important;
+  font-family: inherit !important;
+}
+
+.oat-lang-list {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 6px 0 !important;
+}
+
+.oat-lang-item {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px 20px !important;
+  color: var(--oat-text) !important;
+  font-size: 14.5px !important;
+  cursor: pointer !important;
+  transition: background 0.1s !important;
+}
+
+.oat-lang-item:hover {
+  background: var(--oat-hover-bg) !important;
+}
+
+.oat-lang-item.active {
+  color: #00a884 !important;
+  font-weight: 600 !important;
+}
+
+.oat-lang-code {
+  font-size: 11px !important;
+  opacity: 0.6 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* ===================================================
+   Animations
+   =================================================== */
+@keyframes oat-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes oat-pop {
+  from { transform: scale(0.94); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes oat-spin {
+  0%   { transform: rotate(0deg);   }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===================================================
+   12. Inline Translation Correction Button & Modal
+   =================================================== */
+
+.oat-edit-btn {
+  position: absolute !important;
+  top: 4px !important;
+  right: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50% !important;
+  background: var(--oat-input-bg) !important;
+  border: 1px solid var(--oat-border) !important;
+  color: var(--oat-subtext) !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease, transform 0.1s ease !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  z-index: 10 !important;
+  padding: 0 !important;
+}
+
+.oat-translated-content:hover .oat-edit-btn,
+.oat-quote-translated:hover .oat-edit-btn {
+  opacity: 0.8 !important;
+}
+
+.oat-edit-btn:hover {
+  opacity: 1 !important;
+  color: #00a884 !important;
+  background: var(--oat-hover-bg) !important;
+  border-color: #00a884 !important;
+  transform: scale(1.08) !important;
+}
+
+.oat-correction-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(11, 20, 26, 0.72) !important;
+  backdrop-filter: blur(4px) !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: oat-fade 0.15s ease-out !important;
+}
+
+.oat-correction-overlay.closing {
+  opacity: 0 !important;
+  transition: opacity 0.12s ease !important;
+}
+
+.oat-correction-modal {
+  width: 440px !important;
+  max-width: 90vw !important;
+  background: var(--oat-modal-bg) !important;
+  border: 1px solid var(--oat-border) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 40px var(--oat-shadow) !important;
+  overflow: hidden !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  animation: oat-pop 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.oat-modal-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 18px !important;
+  border-bottom: 1px solid var(--oat-border) !important;
+  background: var(--oat-modal-header) !important;
+}
+
+.oat-modal-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: var(--oat-text) !important;
+}
+
+.oat-modal-close {
+  background: transparent !important;
+  border: none !important;
+  color: var(--oat-subtext) !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  transition: background 0.15s, color 0.15s !important;
+}
+
+.oat-modal-close:hover {
+  background: var(--oat-hover-bg) !important;
+  color: var(--oat-text) !important;
+}
+
+.oat-modal-body {
+  padding: 16px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.oat-form-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+}
+
+.oat-form-row {
+  display: flex !important;
+  gap: 10px !important;
+}
+
+.oat-half {
+  flex: 1 !important;
+}
+
+.oat-form-label {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--oat-subtext) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.4px !important;
+}
+
+.oat-source-preview {
+  background: var(--oat-input-bg) !important;
+  border: 1px solid var(--oat-border) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 13.5px !important;
+  color: var(--oat-text) !important;
+  max-height: 80px !important;
+  overflow-y: auto !important;
+  line-height: 1.4 !important;
+  word-break: break-word !important;
+}
+
+.oat-select, .oat-textarea {
+  background: var(--oat-input-bg) !important;
+  border: 1px solid var(--oat-border) !important;
+  border-radius: 8px !important;
+  color: var(--oat-text) !important;
+  font-size: 13.5px !important;
+  padding: 8px 10px !important;
+  outline: none !important;
+  font-family: inherit !important;
+  transition: border-color 0.15s ease !important;
+}
+
+.oat-select:focus, .oat-textarea:focus {
+  border-color: #00a884 !important;
+}
+
+.oat-textarea {
+  resize: vertical !important;
+  min-height: 60px !important;
+  line-height: 1.4 !important;
+}
+
+.oat-modal-feedback {
+  font-size: 12px !important;
+  min-height: 16px !important;
+}
+
+.oat-modal-feedback.oat-error {
+  color: #ea4335 !important;
+}
+
+.oat-modal-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 10px !important;
+  padding: 12px 18px !important;
+  border-top: 1px solid var(--oat-border) !important;
+  background: var(--oat-modal-header) !important;
+}
+
+.oat-btn {
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: background 0.15s, opacity 0.15s !important;
+  border: none !important;
+}
+
+.oat-btn-cancel {
+  background: transparent !important;
+  color: var(--oat-subtext) !important;
+}
+
+.oat-btn-cancel:hover {
+  background: var(--oat-hover-bg) !important;
+  color: var(--oat-text) !important;
+}
+
+.oat-btn-save {
+  background: #00a884 !important;
+  color: #ffffff !important;
+}
+
+.oat-btn-save:hover {
+  background: #008f6f !important;
+}
+
+.oat-toast {
+  position: fixed !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(20px) !important;
+  background: #00a884 !important;
+  color: #ffffff !important;
+  padding: 9px 18px !important;
+  border-radius: 20px !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+  z-index: 1000000 !important;
+}
+
+.oat-toast.visible {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
