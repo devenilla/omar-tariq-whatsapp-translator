@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omar Tariq's WhatsApp Translator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="header-branding">
+        <svg class="header-icon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.08L2 22l5.08-1.34C8.54 21.52 10.22 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18.2c-1.54 0-2.98-.44-4.21-1.2l-.3-.18-3.12.82.83-3.04-.2-.32C4.18 15.02 3.8 13.55 3.8 12c0-4.52 3.68-8.2 8.2-8.2 4.52 0 8.2 3.68 8.2 8.2 0 4.52-3.68 8.2-8.2 8.2z"/>
+          <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" transform="matrix(0.55 0 0 0.55 6.2 5.5)"/>
+        </svg>
+        <div class="header-text">
+          <span class="header-title">Omar Tariq's</span>
+          <span class="header-subtitle">WhatsApp Translator</span>
+        </div>
+      </div>
+      <span class="version-badge">v1.0</span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="popup-body">
+      <!-- 1. My Language (User's primary language for reading messages) -->
+      <section class="control-group">
+        <label for="select-my-lang" class="group-label">
+          <span>My Language (Translate incoming to)</span>
+        </label>
+        <div class="select-wrapper">
+          <select id="select-my-lang" class="custom-select"></select>
+        </div>
+        <p class="field-hint">Messages in other languages will be translated into this language.</p>
+      </section>
+
+      <!-- 2. Auto-Translate Master Toggle -->
+      <section class="control-group">
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <span class="group-label">Auto-Translate</span>
+            <p class="field-hint">Automatically translate messages when they appear on screen.</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggle-autotranslate">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- 3. Auto-Translate Sub-Options (Collapsible) -->
+      <div id="autotranslate-options" class="sub-panel hidden">
+        <!-- Scope / Mode -->
+        <div class="sub-group">
+          <span class="sub-label">Translate Which Messages?</span>
+          <div class="segmented-control">
+            <label class="segment-option">
+              <input type="radio" name="auto-mode" value="others" id="mode-others">
+              <span class="segment-pill">Others only (Incoming)</span>
+            </label>
+            <label class="segment-option">
+              <input type="radio" name="auto-mode" value="both" id="mode-both" checked>
+              <span class="segment-pill">Me & Others (All)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Excluded Languages -->
+        <div class="sub-group">
+          <span class="sub-label">Exclude Languages from Auto-Translation</span>
+          <p class="field-hint">Don't auto-translate languages you already speak / read:</p>
+          <div class="chips-container" id="excluded-chips"></div>
+        </div>
+      </div>
+
+      <!-- 4. Smart Mix Presets Selector -->
+      <section class="control-group">
+        <div class="group-header-row">
+          <span class="group-label">Routing Mix Strategy</span>
+          <span class="chain-badge" id="mix-badge">Full Dialect AI</span>
+        </div>
+        <div class="segmented-control mix-control">
+          <label class="segment-option">
+            <input type="radio" name="routing-mix" value="ai_first" id="mix-aifirst" checked>
+            <span class="segment-pill" title="Always routes through top AI model first for every message">🔥 Full Dialect AI</span>
+          </label>
+          <label class="segment-option">
+            <input type="radio" name="routing-mix" value="smart_adaptive" id="mix-adaptive">
+            <span class="segment-pill" title="Auto-detects العامية & slang to route to AI, simple text to instant MT (Saves 80% quota)">⚡ Smart Adaptive</span>
+          </label>
+          <label class="segment-option">
+            <input type="radio" name="routing-mix" value="zero_config" id="mix-zeroconfig">
+            <span class="segment-pill" title="Zero API keys required. Uses Chrome AI + Google MT">🌐 Zero-Key Free</span>
+          </label>
+        </div>
+        <p class="field-hint" id="mix-description">Auto-detects Arabic dialects (العامية: Egyptian, Levantine, Gulf), Arabizi, and Turkish street slang to route to AI, while keeping simple chat on instant MT.</p>
+      </section>
+
+      <!-- 5. Draggable Provider Priority Stack (Waterfall) -->
+      <section class="control-group">
+        <div class="group-header-row">
+          <span class="group-label">Provider Priority Stack</span>
+          <span class="engine-badge">Drag ≡ to Reorder</span>
+        </div>
+        <p class="field-hint">Top active block translates first. If rate-limited or key missing, drops to the next in &lt;5ms.</p>
+
+        <div class="provider-stack" id="provider-stack">
+          <!-- Stack items injected and ordered dynamically via JavaScript -->
+        </div>
+      </section>
+
+      <!-- 6. Multilingual Style Preservation Rules (SPEC §10.1) -->
+      <section class="control-group">
+        <span class="group-label">Style Preservation Rules</span>
+        <p class="field-hint">Context-aware rules engine maintaining natural chat ergonomics:</p>
+
+        <div class="style-rules-list">
+          <!-- Caps & Emphasis -->
+          <div class="style-rule-item">
+            <div class="rule-text">
+              <span class="rule-title">🔠 Smart Caps & Emphasis</span>
+              <span class="rule-desc">Locale-aware uppercase (e.g. Turkish İ/ı, German noun safety)</span>
+            </div>
+            <label class="switch rule-switch">
+              <input type="checkbox" id="style-caps" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Elongation Stretching -->
+          <div class="style-rule-item">
+            <div class="rule-text">
+              <span class="rule-title">〰️ Elongations & Stretching</span>
+              <span class="rule-desc">Vowel stretching (sooo → çooook / siiii), Arabic tatweel (ـ)</span>
+            </div>
+            <label class="switch rule-switch">
+              <input type="checkbox" id="style-elongation" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Cultural Laughter -->
+          <div class="style-rule-item">
+            <div class="rule-text">
+              <span class="rule-title">😂 Cultural Laughter</span>
+              <span class="rule-desc">haha ↔ jaja ↔ 555 ↔ www ↔ kkk with intensity matching</span>
+            </div>
+            <label class="switch rule-switch">
+              <input type="checkbox" id="style-laughter" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Punctuation Adaptation -->
+          <div class="style-rule-item">
+            <div class="rule-text">
+              <span class="rule-title">❓ Native Punctuation</span>
+              <span class="rule-desc">Spanish ¿¡, Arabic ؟, CJK full-width ！？ conventions</span>
+            </div>
+            <label class="switch rule-switch">
+              <input type="checkbox" id="style-punctuation" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Protected Spans -->
+          <div class="style-rule-item">
+            <div class="rule-text">
+              <span class="rule-title">🛡️ Protected Spans</span>
+              <span class="rule-desc">Preserve URLs, @mentions, numbers, *bold*, _italic_, `code`</span>
+            </div>
+            <label class="switch rule-switch">
+              <input type="checkbox" id="style-spans" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Slang & Acronyms -->
+          <div class="style-rule-item">
+            <div class="rule-text">
+              <span class="rule-title">💬 Chat Acronyms & Slang</span>
+              <span class="rule-desc">Expands informal abbreviations (idk, mrb, xq, спс, vc)</span>
+            </div>
+            <label class="switch rule-switch">
+              <input type="checkbox" id="style-slang" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Custom Dictionary & Reported Corrections (Translation Memory) -->
+      <section class="control-group dict-card">
+        <div class="dict-header-row">
+          <div class="dict-title-wrap">
+            <span class="group-label">Custom Dictionary & Corrections</span>
+            <span class="dict-count-badge" id="dict-count-badge">0 saved</span>
+          </div>
+          <button id="btn-toggle-add-dict" class="dict-add-toggle-btn" type="button" title="Add new custom correction">
+            ➕ Add
+          </button>
+        </div>
+        <span class="dict-subtext">Verified corrections teach the AI and override translations instantly.</span>
+
+        <!-- Collapsible Add Form -->
+        <div class="dict-add-drawer hidden" id="dict-add-drawer">
+          <div class="dict-form-row">
+            <input type="text" id="dict-source-input" class="dict-input" placeholder="Source phrase (e.g. في الستادي)" />
+            <input type="text" id="dict-target-input" class="dict-input" placeholder="Preferred translation (e.g. In the study room)" />
+          </div>
+          <div class="dict-form-row dict-lang-row">
+            <select id="dict-from-lang" class="dict-select">
+              <option value="auto">From: Auto</option>
+              <option value="ar">Arabic</option>
+              <option value="tr">Turkish</option>
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="ru">Russian</option>
+            </select>
+            <select id="dict-to-lang" class="dict-select">
+              <option value="all">To: Any Language</option>
+              <option value="en" selected>English</option>
+              <option value="tr">Turkish</option>
+              <option value="ar">Arabic</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="ru">Russian</option>
+            </select>
+            <button id="btn-save-dict-entry" class="dict-save-btn" type="button">Save</button>
+          </div>
+          <span class="dict-feedback-msg" id="dict-feedback-msg"></span>
+        </div>
+
+        <!-- Scrollable Corrections List -->
+        <div class="dict-items-container" id="dict-items-container">
+          <div class="dict-empty-state" id="dict-empty-state">No custom corrections saved yet. You can report wrong translations in WhatsApp bubbles via ✎ or add them here.</div>
+        </div>
+      </section>
+
+      <!-- 8. Storage & Cache Management -->
+      <section class="control-group budget-card">
+        <div class="cache-header-row">
+          <span class="group-label">Translation Cache</span>
+        </div>
+        <!-- Hidden storage budget indicators (preserved for DOM selector safety) -->
+        <div class="budget-header-row" style="display: none !important;">
+          <span class="budget-val" id="budget-text">~0.52 MB / 300 MB</span>
+        </div>
+        <div class="budget-bar-track" style="display: none !important;">
+          <div class="budget-bar-fill" id="budget-bar" style="width: 0.2%;"></div>
+        </div>
+        <span class="budget-subtext" style="display: none !important;">Zero model downloads required. 100% compliant with 300 MB hard cap.</span>
+        
+        <div class="cache-action-row">
+          <button id="btn-clear-cache" class="clear-cache-btn" title="Clear all stored translations and reset active chat translations">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M19.36 2.72l1.42 1.42-3.18 3.18-1.42-1.42 3.18-3.18zm-8.86 4.34l-5.3 5.3c-.39.39-.39 1.02 0 1.41l3.54 3.54c.39.39 1.02.39 1.41 0l5.3-5.3-4.95-4.95zm8.56 1.42l-1.42-1.42-2.12 2.12 1.42 1.42 2.12-2.12zm-3.54 3.54l-1.42-1.42-1.41 1.41 1.42 1.42 1.41-1.41zM3 21h18v2H3v-2z"/>
+            </svg>
+            <span>Clear Translation Cache</span>
+          </button>
+          <span class="cache-status-msg" id="cache-status-msg"></span>
+        </div>
+      </section>
+
+      <!-- 8. Active Chat Language Status -->
+      <section class="status-card">
+        <div class="status-icon">💬</div>
+        <div class="status-details">
+          <span class="status-label">Active Chat Target</span>
+          <span class="status-value" id="current-chat-lang">Turkish (TR)</span>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="popup-footer">
+      <span class="status-indicator online"></span>
+      <span class="footer-status">Active on WhatsApp Web</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
