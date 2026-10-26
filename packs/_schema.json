@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LanguagePack",
+  "type": "object",
+  "required": ["lang", "script", "caps", "laughter", "acronyms", "review"],
+  "properties": {
+    "lang": { "type": "string" },
+    "script": { "type": "string" },
+    "dir": { "type": "string", "enum": ["ltr", "rtl"], "default": "ltr" },
+    "caps": {
+      "type": "object",
+      "required": ["supported"],
+      "properties": {
+        "supported": { "type": "boolean" },
+        "strategy": { "type": "string", "enum": ["uppercase", "none", "emphasis_punct"] },
+        "locale": { "type": "string" }
+      }
+    },
+    "vowels": { "type": "string" },
+    "elongation": {
+      "type": "object",
+      "properties": {
+        "marker": { "type": ["string", "null"] },
+        "tatweel": { "type": "boolean" },
+        "legitTriples": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "punct": {
+      "type": "object",
+      "properties": {
+        "question": { "type": "array", "items": { "type": "string" } },
+        "exclaim": { "type": "array", "items": { "type": "string" } },
+        "ellipsis": { "type": "string" }
+      }
+    },
+    "laughter": {
+      "type": "object",
+      "required": ["patterns", "map"],
+      "properties": {
+        "patterns": { "type": "array", "items": { "type": "string" } },
+        "map": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    },
+    "acronyms": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["expansion"],
+        "properties": {
+          "expansion": { "type": "string" },
+          "register": { "type": "string" },
+          "ambiguous": { "type": "boolean" }
+        }
+      }
+    },
+    "slang": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["meaning"],
+        "properties": {
+          "meaning": { "type": "string" },
+          "register": { "type": "string" },
+          "region": { "type": "string" },
+          "ambiguous": { "type": "boolean" }
+        }
+      }
+    },
+    "intensifiers": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "commentaryPhrases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "tier3": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "gate": { "type": "string" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "type": "string", "enum": ["draft", "reviewed"] },
+        "by": { "type": ["string", "null"] },
+        "date": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

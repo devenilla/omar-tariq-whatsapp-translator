@@ -1,0 +1,54 @@
+{
+  "lang": "fr",
+  "script": "Latn",
+  "dir": "ltr",
+  "caps": {
+    "supported": true,
+    "strategy": "uppercase",
+    "locale": "fr-FR"
+  },
+  "vowels": "aeiouyàâéèêëîïôùûüÿœæAEIOUYÀÂÉÈÊËÎÏÔÙÛÜŸŒÆ",
+  "elongation": {
+    "marker": null,
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "?"],
+    "exclaim": ["", "!"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["m[dr]{2,}", "ha(ha)+", "haha+", "ah(ah)+", "hi(hi)+"],
+    "map": {
+      "jaja": "haha",
+      "555": "haha",
+      "www": "haha",
+      "kkk": "haha",
+      "haha": "haha",
+      "lol": "mdr",
+      "lmao": "ptdr"
+    }
+  },
+  "acronyms": {
+    "mdr": { "expansion": "mort de rire", "register": "informal" },
+    "ptdr": { "expansion": "pété de rire", "register": "informal" },
+    "stp": { "expansion": "s'il te plaît", "register": "informal" },
+    "svp": { "expansion": "s'il vous plaît", "register": "informal" },
+    "slm": { "expansion": "salut", "register": "informal" },
+    "bcp": { "expansion": "beaucoup", "register": "informal" }
+  },
+  "intensifiers": {
+    "très": "très",
+    "oui": "oui",
+    "non": "non",
+    "si": "si",
+    "vraiment": "vraiment"
+  },
+  "commentaryPhrases": ["Bien sûr", "Voici la traduction :", "Traduction :"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

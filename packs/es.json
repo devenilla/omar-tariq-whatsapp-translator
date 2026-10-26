@@ -1,0 +1,59 @@
+{
+  "lang": "es",
+  "script": "Latn",
+  "dir": "ltr",
+  "caps": {
+    "supported": true,
+    "strategy": "uppercase",
+    "locale": "es-ES"
+  },
+  "vowels": "aeiouáéíóúüAEIOUÁÉÍÓÚÜ",
+  "elongation": {
+    "marker": null,
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["¿", "?"],
+    "exclaim": ["¡", "!"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["j[aeiou]{2,}", "ja(ja)+", "jaja+", "xd+"],
+    "map": {
+      "haha": "jaja",
+      "555": "jaja",
+      "www": "jaja",
+      "kkk": "jaja",
+      "lol": "jaja",
+      "lmao": "jajaja"
+    }
+  },
+  "acronyms": {
+    "xq": { "expansion": "porque", "register": "informal" },
+    "tqm": { "expansion": "te quiero mucho", "register": "informal" },
+    "tb": { "expansion": "también", "register": "informal" },
+    "q": { "expansion": "que", "register": "informal" },
+    "d": { "expansion": "de", "register": "informal" },
+    "bno": { "expansion": "bueno", "register": "informal" }
+  },
+  "slang": {
+    "chido": { "meaning": "genial", "register": "slang", "region": "MX" },
+    "guay": { "meaning": "genial", "register": "slang", "region": "ES" }
+  },
+  "intensifiers": {
+    "no": "no",
+    "sí": "sí",
+    "muy": "muy",
+    "tan": "tan",
+    "hola": "hola",
+    "bueno": "bueno",
+    "genial": "genial"
+  },
+  "commentaryPhrases": ["Claro", "Aquí está", "Traducción:", "Por supuesto"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

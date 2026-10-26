@@ -1,0 +1,47 @@
+{
+  "lang": "ja",
+  "script": "Jpan",
+  "dir": "ltr",
+  "caps": {
+    "supported": false,
+    "strategy": "none"
+  },
+  "vowels": "あいうえおアイウエオ",
+  "elongation": {
+    "marker": "〜",
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "？"],
+    "exclaim": ["", "！"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["w{2,}", "ｗ{2,}", "草+", "笑+"],
+    "map": {
+      "haha": "www",
+      "jaja": "www",
+      "555": "www",
+      "kkk": "www",
+      "lol": "www",
+      "lmao": "wwwwww"
+    }
+  },
+  "acronyms": {
+    "wktk": { "expansion": "ワクワクテカテカ", "register": "informal" },
+    "kwsk": { "expansion": "詳しく", "register": "informal" }
+  },
+  "intensifiers": {
+    "とても": "とても",
+    "すごく": "すごく",
+    "はい": "はい",
+    "いいえ": "いいえ"
+  },
+  "commentaryPhrases": ["もちろん", "翻訳はこちらです:", "訳:"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

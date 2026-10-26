@@ -1,0 +1,113 @@
+{
+  "lang": "ar",
+  "script": "Arab",
+  "dir": "rtl",
+  "caps": {
+    "supported": false,
+    "strategy": "none"
+  },
+  "vowels": "اويىأإآَُِ",
+  "elongation": {
+    "marker": null,
+    "tatweel": true,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "؟"],
+    "exclaim": ["", "!"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["ه{2,}", "هه(هه)+", "هههه+", "خخخ+"],
+    "map": {
+      "haha": "هههه",
+      "jaja": "هههه",
+      "555": "هههه",
+      "www": "هههه",
+      "lol": "هههه",
+      "lmao": "هههههه"
+    }
+  },
+  "acronyms": {
+    "برب": { "expansion": "سأعود قريبا", "register": "informal" },
+    "تيت": { "expansion": "خذ وقتك", "register": "informal" },
+    "يسلمو": { "expansion": "شكرا جزيلا", "register": "informal" },
+    "فكك": { "expansion": "اترك الموضوع", "register": "informal" },
+    "كبر مخك": { "expansion": "لا تهتم", "register": "informal" },
+    "مش ناقصة": { "expansion": "لا أحتمل المزيد", "register": "informal" },
+    "عامل ايه": { "expansion": "كيف حالك", "register": "informal" },
+    "ازيك": { "expansion": "كيف حالك", "register": "informal" },
+    "شلونك": { "expansion": "كيف حالك", "register": "informal" },
+    "ماشي": { "expansion": "حسنا", "register": "informal" },
+    "بقولك ايه": { "expansion": "أخبرني", "register": "informal" },
+    "بقولك": { "expansion": "أخبرني", "register": "informal" },
+    "ايه رايك": { "expansion": "ما رأيك", "register": "informal" },
+    "ف الفيديو": { "expansion": "في الفيديو", "register": "informal" },
+    "بيلم": { "expansion": "يجمع ويشرح", "register": "informal" },
+    "ولا اتفرج": { "expansion": "أم أشاهد", "register": "informal" },
+    "باتفرج": { "expansion": "أنا أشاهد", "register": "informal" },
+    "باعتله": { "expansion": "أرسلت له", "register": "informal" },
+    "ع طول": { "expansion": "مباشرة", "register": "informal" },
+    "على طول": { "expansion": "مباشرة", "register": "informal" },
+    "اسمو ثلاثي": { "expansion": "اسمه الكامل ثلاثيا", "register": "informal" },
+    "اسمه ثلاثي": { "expansion": "اسمه الكامل ثلاثيا", "register": "informal" },
+    "الاسم الثلاثي": { "expansion": "الاسم الكامل", "register": "informal" },
+    "فصله": { "expansion": "فصله الدراسي", "register": "informal" },
+    "دفعتكم": { "expansion": "دفعتكم الدراسية", "register": "informal" },
+    "دفعة": { "expansion": "دفعة دراسية", "register": "informal" },
+    "يبعتلي برايفت": { "expansion": "يرسل لي رسالة خاصة", "register": "informal" },
+    "يبعتلي": { "expansion": "يرسل لي", "register": "informal" },
+    "برايفت": { "expansion": "رسالة خاصة", "register": "informal" },
+    "الرقم القومي": { "expansion": "رقم الهوية الوطنية", "register": "informal" },
+    "رقم التليفون": { "expansion": "رقم الهاتف", "register": "informal" },
+    "نزلوه بجد": { "expansion": "حملوه حقا", "register": "informal" },
+    "نزلوه": { "expansion": "قوموا بتحميله", "register": "informal" },
+    "نزلو": { "expansion": "حملوا", "register": "informal" },
+    "اعتنموه": { "expansion": "اغتنموه واستفيدوا منه", "register": "informal" },
+    "اغتنموه": { "expansion": "اغتنموه واستفيدوا منه", "register": "informal" },
+    "انشروه": { "expansion": "انشروه وشاركوه", "register": "informal" },
+    "لينك": { "expansion": "رابط", "register": "informal" },
+    "شوفو الموضوع": { "expansion": "ناقشوا هذا الموضوع", "register": "informal" },
+    "جاي السكن مع": { "expansion": "قادم إلى سكن الطلاب مع", "register": "informal" },
+    "جاي السكن": { "expansion": "قادم إلى سكن الطلاب", "register": "informal" },
+    "في السكن": { "expansion": "في سكن الطلاب", "register": "informal" },
+    "السكن": { "expansion": "سكن الطلاب", "register": "informal" },
+    "توهت للدرجادي": { "expansion": "هل ضعت لهذه الدرجة", "register": "informal" },
+    "توهت للدرجة دي": { "expansion": "هل ضعت لهذه الدرجة", "register": "informal" },
+    "توهت": { "expansion": "ضللت الطريق", "register": "informal" },
+    "للدرجادي": { "expansion": "لهذه الدرجة", "register": "informal" },
+    "هرن عليك تنزل تفتح الباب بقا": { "expansion": "سأتصل بك هاتفيا لتنزل وتفتح الباب", "register": "informal" },
+    "هرن عليك تنزل تفتح الباب": { "expansion": "سأتصل بك هاتفيا لتنزل وتفتح الباب", "register": "informal" },
+    "هرن عليك": { "expansion": "سأتصل بك هاتفيا", "register": "informal" },
+    "هرنلك": { "expansion": "سأتصل بك", "register": "informal" },
+    "هرن": { "expansion": "سأتصل هاتفيا", "register": "informal" },
+    "تنزل تفتح الباب": { "expansion": "لتنزل وتفتح الباب", "register": "informal" },
+    "تفتح الباب بقا": { "expansion": "وتفتح الباب", "register": "informal" },
+    "فينك كده": { "expansion": "أين أنت الآن", "register": "informal" },
+    "فينك": { "expansion": "أين أنت", "register": "informal" },
+    "في الستادي": { "expansion": "في غرفة المذاكرة", "register": "informal" },
+    "الستادي": { "expansion": "غرفة المذاكرة", "register": "informal" },
+    "هطلت": { "expansion": "سأصعد", "register": "informal" },
+    "اصلس": { "expansion": "أصلي", "register": "informal" },
+    "اتوضى و انزل اصلس": { "expansion": "أتوضأ وأنزل لأصلي", "register": "informal" },
+    "اتوضى وانزل اصلي": { "expansion": "أتوضأ وأنزل لأصلي", "register": "informal" },
+    "عمر موجود هناك": { "expansion": "هل عمر موجود هناك", "register": "informal" }
+  },
+  "slang": {
+    "يلا": { "meaning": "هيا بنا", "register": "informal" },
+    "تمام": { "meaning": "حسنا", "register": "informal" }
+  },
+  "intensifiers": {
+    "جدا": "جدا",
+    "نعم": "نعم",
+    "لا": "لا",
+    "كتير": "كتير",
+    "حلو": "حلو"
+  },
+  "commentaryPhrases": ["بالتأكيد", "إليك الترجمة:", "الترجمة:"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

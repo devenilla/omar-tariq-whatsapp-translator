@@ -1,0 +1,77 @@
+{
+  "lang": "tr",
+  "script": "Latn",
+  "dir": "ltr",
+  "caps": {
+    "supported": true,
+    "strategy": "uppercase",
+    "locale": "tr-TR"
+  },
+  "vowels": "aeıioöuüAEIİOÖUÜ",
+  "elongation": {
+    "marker": null,
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "?"],
+    "exclaim": ["", "!"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["h[aeiou]{2,}", "ha(ha)+", "haha+", "sjsj+", "asdasd+", "kikiki+"],
+    "map": {
+      "jaja": "haha",
+      "555": "haha",
+      "www": "haha",
+      "kkk": "haha",
+      "haha": "haha",
+      "lol": "haha",
+      "lmao": "hahaha"
+    }
+  },
+  "acronyms": {
+    "mrb": { "expansion": "merhaba", "register": "informal" },
+    "slm": { "expansion": "selam", "register": "informal" },
+    "tmm": { "expansion": "tamam", "register": "informal" },
+    "kib": { "expansion": "kendine iyi bak", "register": "informal" },
+    "nbr": { "expansion": "ne haber", "register": "informal" },
+    "eyv": { "expansion": "eyvallah", "register": "informal" },
+    "sa": { "expansion": "selamün aleyküm", "register": "informal" },
+    "as": { "expansion": "aleyküm selam", "register": "informal" },
+    "bişi": { "expansion": "bir şey", "register": "informal" },
+    "bisi": { "expansion": "bir şey", "register": "informal" },
+    "yapacak bişi yok": { "expansion": "yapacak bir şey yok", "register": "informal" },
+    "gidecen": { "expansion": "gideceksin", "register": "informal" },
+    "yapacan": { "expansion": "yapacaksın", "register": "informal" },
+    "edicen": { "expansion": "edeceksin", "register": "informal" },
+    "geliyon": { "expansion": "geliyorsun", "register": "informal" },
+    "gidiyon": { "expansion": "gidiyorsun", "register": "informal" },
+    "napiyon": { "expansion": "ne yapıyorsun", "register": "informal" },
+    "napıyon": { "expansion": "ne yapıyorsun", "register": "informal" },
+    "noldu": { "expansion": "ne oldu", "register": "informal" },
+    "boşver": { "expansion": "aldırma", "register": "informal" },
+    "baksana": { "expansion": "bakar mısın", "register": "informal" }
+  },
+  "slang": {
+    "aynen": { "meaning": "kesinlikle", "register": "slang" },
+    "kanka": { "meaning": "yakın arkadaş", "register": "slang" },
+    "kral": { "meaning": "harika insan", "register": "slang" }
+  },
+  "intensifiers": {
+    "çok": "çok",
+    "evet": "evet",
+    "hayır": "hayır",
+    "güzel": "güzel",
+    "merhaba": "merhaba",
+    "harika": "harika",
+    "süper": "süper",
+    "tamam": "tamam"
+  },
+  "commentaryPhrases": ["Tabii", "Elbette", "İşte", "Çeviri:"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

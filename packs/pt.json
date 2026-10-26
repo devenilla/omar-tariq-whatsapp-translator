@@ -1,0 +1,53 @@
+{
+  "lang": "pt",
+  "script": "Latn",
+  "dir": "ltr",
+  "caps": {
+    "supported": true,
+    "strategy": "uppercase",
+    "locale": "pt-PT"
+  },
+  "vowels": "aeiouáéíóúâêôãõAEIOUÁÉÍÓÚÂÊÔÃÕ",
+  "elongation": {
+    "marker": null,
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "?"],
+    "exclaim": ["", "!"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["k{2,}", "rs(rs)+", "ha(ha)+", "kkk+", "hue(hue)+"],
+    "map": {
+      "haha": "kkk",
+      "jaja": "kkk",
+      "555": "kkk",
+      "www": "kkk",
+      "lol": "kkk",
+      "lmao": "kkkkkk"
+    }
+  },
+  "acronyms": {
+    "vc": { "expansion": "você", "register": "informal" },
+    "tb": { "expansion": "também", "register": "informal" },
+    "pq": { "expansion": "porque", "register": "informal" },
+    "msg": { "expansion": "mensagem", "register": "informal" },
+    "obg": { "expansion": "obrigado", "register": "informal" },
+    "vlw": { "expansion": "valeu", "register": "informal" }
+  },
+  "intensifiers": {
+    "muito": "muito",
+    "sim": "sim",
+    "não": "não",
+    "demais": "demais",
+    "tão": "tão"
+  },
+  "commentaryPhrases": ["Claro", "Aqui está a tradução:", "Tradução:"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

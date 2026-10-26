@@ -1,0 +1,50 @@
+{
+  "lang": "de",
+  "script": "Latn",
+  "dir": "ltr",
+  "caps": {
+    "supported": true,
+    "strategy": "uppercase",
+    "locale": "de-DE"
+  },
+  "vowels": "aeiouäöüAEIOUÄÖÜ",
+  "elongation": {
+    "marker": null,
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "?"],
+    "exclaim": ["", "!"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["h[aeiou]{2,}", "ha(ha)+", "haha+", "hehe+"],
+    "map": {
+      "jaja": "haha",
+      "555": "haha",
+      "www": "haha",
+      "kkk": "haha",
+      "haha": "haha"
+    }
+  },
+  "acronyms": {
+    "vg": { "expansion": "viel Glück", "register": "informal" },
+    "lg": { "expansion": "liebe Grüße", "register": "informal" },
+    "ka": { "expansion": "keine Ahnung", "register": "informal" },
+    "kp": { "expansion": "kein Plan", "register": "informal" }
+  },
+  "intensifiers": {
+    "sehr": "sehr",
+    "ja": "ja",
+    "nein": "nein",
+    "so": "so",
+    "bitte": "bitte"
+  },
+  "commentaryPhrases": ["Klar", "Hier ist die Übersetzung:", "Übersetzung:"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

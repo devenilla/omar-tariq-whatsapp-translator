@@ -1,0 +1,52 @@
+{
+  "lang": "ru",
+  "script": "Cyrl",
+  "dir": "ltr",
+  "caps": {
+    "supported": true,
+    "strategy": "uppercase",
+    "locale": "ru-RU"
+  },
+  "vowels": "аеёиоуыэюяАЕЁИОУЫЭЮЯ",
+  "elongation": {
+    "marker": null,
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "?"],
+    "exclaim": ["", "!"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["ах[ах]{2,}", "ха(ха)+", "ахах+", "хех+", "хз+"],
+    "map": {
+      "haha": "ахах",
+      "jaja": "ахах",
+      "555": "ахах",
+      "www": "ахах",
+      "lol": "ахах",
+      "lmao": "ахахах"
+    }
+  },
+  "acronyms": {
+    "спс": { "expansion": "спасибо", "register": "informal" },
+    "пж": { "expansion": "пожалуйста", "register": "informal" },
+    "хз": { "expansion": "не знаю", "register": "informal" },
+    "кст": { "expansion": "кстати", "register": "informal" },
+    "норм": { "expansion": "нормально", "register": "informal" }
+  },
+  "intensifiers": {
+    "очень": "очень",
+    "да": "да",
+    "нет": "нет",
+    "так": "так",
+    "привет": "привет"
+  },
+  "commentaryPhrases": ["Конечно", "Вот перевод:", "Перевод:"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

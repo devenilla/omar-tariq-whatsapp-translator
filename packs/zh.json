@@ -1,0 +1,48 @@
+{
+  "lang": "zh",
+  "script": "Hans",
+  "dir": "ltr",
+  "caps": {
+    "supported": false,
+    "strategy": "none"
+  },
+  "vowels": "",
+  "elongation": {
+    "marker": null,
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "？"],
+    "exclaim": ["", "！"],
+    "ellipsis": "……"
+  },
+  "laughter": {
+    "patterns": ["哈{2,}", "哈哈+", "嘻嘻+", "呵呵+"],
+    "map": {
+      "haha": "哈哈",
+      "jaja": "哈哈",
+      "555": "哈哈",
+      "www": "哈哈",
+      "lol": "哈哈",
+      "lmao": "哈哈哈哈"
+    }
+  },
+  "acronyms": {
+    "nb": { "expansion": "厉害", "register": "slang" },
+    "yyds": { "expansion": "永远的神", "register": "slang" },
+    "xswl": { "expansion": "笑死我了", "register": "informal" }
+  },
+  "intensifiers": {
+    "非常": "非常",
+    "很": "很",
+    "是": "是",
+    "不": "不"
+  },
+  "commentaryPhrases": ["当然", "这是翻译：", "翻译："],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}

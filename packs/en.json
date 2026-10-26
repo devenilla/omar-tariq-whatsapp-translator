@@ -1,0 +1,68 @@
+{
+  "lang": "en",
+  "script": "Latn",
+  "dir": "ltr",
+  "caps": {
+    "supported": true,
+    "strategy": "uppercase",
+    "locale": "en-US"
+  },
+  "vowels": "aeiouyAEIOUY",
+  "elongation": {
+    "marker": null,
+    "tatweel": false,
+    "legitTriples": []
+  },
+  "punct": {
+    "question": ["", "?"],
+    "exclaim": ["", "!"],
+    "ellipsis": "…"
+  },
+  "laughter": {
+    "patterns": ["h[aeiou]{2,}", "ha(ha)+", "haha+", "hehe+", "l[ol]{2,}"],
+    "map": {
+      "jaja": "haha",
+      "555": "haha",
+      "www": "haha",
+      "kkk": "haha",
+      "haha": "haha",
+      "lol": "haha",
+      "lmao": "hahaha"
+    }
+  },
+  "acronyms": {
+    "idk": { "expansion": "I do not know", "register": "informal" },
+    "omg": { "expansion": "oh my god", "register": "informal" },
+    "tbh": { "expansion": "to be honest", "register": "informal" },
+    "brb": { "expansion": "be right back", "register": "informal" },
+    "btw": { "expansion": "by the way", "register": "informal" },
+    "imo": { "expansion": "in my opinion", "register": "informal" },
+    "np": { "expansion": "no problem", "register": "informal" },
+    "ty": { "expansion": "thank you", "register": "informal" },
+    "thx": { "expansion": "thanks", "register": "informal" },
+    "pls": { "expansion": "please", "register": "informal" },
+    "wth": { "expansion": "what the hell", "register": "informal" }
+  },
+  "slang": {
+    "gonna": { "meaning": "going to", "register": "informal" },
+    "wanna": { "meaning": "want to", "register": "informal" },
+    "gotta": { "meaning": "got to", "register": "informal" }
+  },
+  "intensifiers": {
+    "so": "so",
+    "yes": "yes",
+    "no": "no",
+    "really": "really",
+    "very": "very",
+    "please": "please",
+    "love": "love",
+    "great": "great",
+    "good": "good"
+  },
+  "commentaryPhrases": ["Sure", "Here is", "Translation:", "Certainly", "Here's"],
+  "review": {
+    "status": "reviewed",
+    "by": "OAT Senior Staff",
+    "date": "2026-10-27"
+  }
+}
