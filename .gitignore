@@ -26,4 +26,6 @@ checkpoints/
 # Scratch & development experiments
 scratch/
 .antigravity-devlog.md
+push_to_github.bat
+
 
